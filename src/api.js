@@ -9,9 +9,13 @@ const instance = axios.create({
   },
 });
 
-export const getWeahter = () => {
-  const lat = 35.15759545095452;
-  const lon = 129.05926369070968;
+export const getWeahter = ({ queryKey }) => {
+  // const lat = queryKey[1];
+  // const lon = queryKey[2];
+
+  const [_, lat, lon] = queryKey;
+  // =>배열 비구조화 할당으로 변수 처리
+  // console.log(lat, lon);
   return instance
     .get(`weather?lat=${lat}&lon=${lon}`)
     .then((response) => response.data);
