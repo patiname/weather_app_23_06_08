@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const useCurrentLocation = () => {
   const defaultLat = 35.15759545095452;
@@ -23,9 +23,17 @@ export const useCurrentLocation = () => {
 
   //   console.log(lat, lon);
 
-  navigator.geolocation.getCurrentPosition(location);
-  //   =>현재 위치 기준으로 위도, 경도를 얻어옴
-  //   =>매개변수에 실행할 함수명을 작성해주면 됨
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(location);
+    //   =>현재 위치 기준으로 위도, 경도를 얻어옴
+    //   =>매개변수에 실행할 함수명을 작성해주면 됨
+  }, [lat, lon]);
+
+  // *useEffect(() => {}, [])
+  // =>페이지가 랜더링 되었을때 한번만 실행, 랜더링 후 실행,
+  // 업데이트가 되었을때 실행 등을 할수 있으며
+  // =>특정값이 변경될때 마다 코드를 실행하고 싶을땐 []배열 안쪽으로
+  // 특정값을 넣어주면됨
 
   return {
     lat,

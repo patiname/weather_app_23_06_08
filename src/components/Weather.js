@@ -60,7 +60,6 @@ const Con = styled.div`
 `;
 
 export const Weather = ({ data }) => {
-  console.log(data);
   return (
     <Wrap>
       <City>{data.name}</City>
